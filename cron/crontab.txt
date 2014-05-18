@@ -1,0 +1,1 @@
+*/15 * * * * php -f /var/www/poe/cron/cron.php > /var/www/poe/logs/cron.log && date >> /var/www/poe/logs/cron.log
