@@ -1,17 +1,20 @@
 <?php
 ini_set('error_reporting', E_ALL);
 
-$guildUsers = array(
-    'belgarionderiva',
-    'count26ndie',
-    'teogatts',
-    'heracles_41',
-    'lordmacphilo',
-    'quentino2001',
-    'galaxypayze',
-    'math170101',
-    'silvernightz'
-);
+$guildUsers = json_decode(file_get_contents(__DIR__ . '/../cache/guild.json'));
+if (empty($guildUsers)) {
+    $guildUsers = array(
+        'belgarionderiva',
+        'count26ndie',
+        'teogatts',
+        'heracles_41',
+        'lordmacphilo',
+        'quentino2001',
+        'galaxypayze',
+        'math170101',
+        'silvernightz'
+    );
+}
 $url = 'http://api.pathofexile.com/leagues/2 Week Charity Event?ladder=1&ladderLimit=200&ladderOffset=';
 $userRanked = array();
 $offset = 0;
@@ -45,5 +48,5 @@ while ($offset < 15000) {
 
 echo '</ul>';
 
-file_put_contents('/var/www/poe/cache/data.php', json_encode($userRanked));
+file_put_contents(__DIR__ . '/../cache/data.php', json_encode($userRanked));
 
