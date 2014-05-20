@@ -1,6 +1,7 @@
 <?php
 
-$cache = json_decode(file_get_contents(__DIR__ . '/../cache/data.php'));
+$cache = json_decode(file_get_contents(__DIR__ . '/../cache/data.json'));
+$topTen = json_decode(file_get_contents(__DIR__ . '/../cache/top10.json'));
 
 if (count($cache) <= 0) {
     echo 'No entries found !<br/>';
@@ -55,7 +56,22 @@ foreach ($cache as $userName => $characters) {
     }
     echo '</ul>';
 }
-echo '</ul>';
+echo <<<TOPTEN
+</ul>
+<h1>Top 10</h1>
+<ul>
+TOPTEN;
+
+foreach ($topTen as $i => $entry) {
+    echo '<li>';
+    echo '<span class="rank">#' . $entry->rank . '</span><span class="username">' . htmlentities($entry->account->name) . '</span>';
+    echo '<ul>'
+    $dead = !!$data->dead;
+    echo '<li>' . ($dead ? '<s>' : '') . $data->character->name . '(' . $data->character->class . ' lvl ' . $data->character->level . ') => ' . $data->character->experience . ' xp' . ($dead ? '</s>' : '') . '</li>';
+    echo '</ul>';
+}
+echo <<<TOPTEN
+</ul>
 
 echo <<<CONTENTEND
 </div>
