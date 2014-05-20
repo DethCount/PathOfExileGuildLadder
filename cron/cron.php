@@ -55,6 +55,5 @@ echo '</ul>';
 
 file_put_contents(__DIR__ . '/../cache/data.json', json_encode($userRanked));
 
-
 file_put_contents(__DIR__ . '/../cache/top10.json', json_encode($topTen));
 
