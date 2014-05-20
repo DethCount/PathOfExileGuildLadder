@@ -31,12 +31,12 @@ while ($offset < 15000) {
 
     $i = 0;
     foreach ($response->ladder->entries as $entry) {
+        if ($offset === 0 && $i < 10) {
+            $topTen[] = $entry;
+        }
+
         if (isset($entry->account->name) && in_array(strtolower($entry->account->name), $guildUsers)) {
             $userRanked[$entry->account->name][$entry->rank] = $entry;
-
-            if ($offset == 0 && $i < 10) {
-                $topTen[$i] = $entry;
-            }
 
             echo '<li>#' . $entry->rank . ' : ' . $entry->account->name. ' => ' . $entry->character->name 
                 . ' (' . $entry->character->class . ' lvl ' . $entry->character->level . ' ' . $entry->character->experience . ' xp)</li>';
