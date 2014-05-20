@@ -66,13 +66,13 @@ foreach ($topTen as $i => $entry) {
     echo '<li>';
     echo '<span class="rank">#' . $entry->rank . '</span><span class="username">' . htmlentities($entry->account->name) . '</span>';
     echo '<ul>';
-    $dead = !!$data->dead;
+    $dead = !!$entry->dead;
     echo '<li>' . ($dead ? '<s>' : '') 
-      . $data->character->name 
+      . $entry->character->name 
       . '(' 
-          . $data->character->class 
-          . ' lvl ' . $data->character->level 
-      . ') => ' . $data->character->experience . ' xp' 
+          . $entry->character->class 
+          . ' lvl ' . $entry->character->level 
+      . ') => ' . $entry->character->experience . ' xp' 
       . ($dead ? '</s>' : '') . '</li>';
     echo '</ul>';
 }
