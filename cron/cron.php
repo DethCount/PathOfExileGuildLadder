@@ -32,7 +32,7 @@ while ($offset < 15000) {
     $i = 0;
     foreach ($response->ladder->entries as $entry) {
         if (isset($entry->account->name) && in_array(strtolower($entry->account->name), $guildUsers)) {
-            $userRanked[$entry->account->name][$rank] = $entry;
+            $userRanked[$entry->account->name][$entry->rank] = $entry;
 
             if ($offset == 0 && $i < 10) {
                 $topTen[$i] = $entry;
